@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.ailk.common.ui.gis.baidumap.BaiduMapConfig"/>
+    <classEntry path="com.ailk.common.ui.gis.baidumap.BaiduMapControl"/>
+    <classEntry path="com.ailk.common.ui.gis.googlemap.GoogleMap"/>
+    <classEntry path="com.ailk.common.ui.gis.googlemap.GoogleMapConfig"/>
+    <classEntry path="com.ailk.common.ui.gis.Constants"/>
+    <classEntry path="com.ailk.common.ui.gis.exception.GisException"/>
+    <classEntry path="com.ailk.common.ui.gis.Version"/>
+    <classEntry path="com.ailk.common.ui.gis.core.metry.GisCircle"/>
+    <classEntry path="com.ailk.common.ui.gis.core.GisServiceLayer"/>
+    <classEntry path="com.ailk.common.ui.gis.core.task.GisFindParameters"/>
+    <classEntry path="com.ailk.common.ui.gis.core.task.GisQueryTask"/>
+    <classEntry path="com.ailk.common.ui.gis.tools.ZoomSliderBar"/>
+    <classEntry path="com.ailk.common.ui.gis.tools.ScaleBar"/>
+    <classEntry path="com.ailk.common.ui.gis.tools.OverViewTool"/>
+    <classEntry path="com.ailk.common.ui.gis.utils.IPUtil"/>
+    <classEntry path="com.ailk.common.ui.gis.core.GisWMSLayer"/>
+    <classEntry path="com.ailk.common.ui.gis.baidumap.BaiduMap"/>
+    <classEntry path="com.ailk.common.ui.gis.core.BaseConfig"/>
+    <classEntry path="com.ailk.common.ui.gis.core.BaseControl"/>
+    <classEntry path="com.ailk.common.ui.gis.tools.PropertiesComp"/>
+    <classEntry path="com.ailk.common.ui.gis.tools.PropertiesCompEvent"/>
+    <classEntry path="com.ailk.common.ui.gis.event.GisFeatureLayerEvent"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="ailk-gis-manifest.xml" sourcePath="ailk-gis-manifest.xml"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="ailk-gis-manifest.xml" namespace="http://www.asiainfo-linkage.com.cn/flex/gis"/>
+  </namespaceManifests>
+</flexLibProperties>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SkinnableContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+					  xmlns:s="library://ns.adobe.com/flex/spark"
+					  xmlns:mx="library://ns.adobe.com/flex/mx"
+					  backgroundColor="0xeef2f6"
+					  backgroundAlpha="0.8"
+					  creationComplete="propertiesComp_creationCompleteHandler(event)">
+	<!--
+		 ***************************************
+		 This is Content
+		 @author shiliang (66614)
+		 @version 1.0
+		 @date 2013-1-9
+		 @langversion 3.0
+		 @playerversion Flash 11
+		 @productversion Flex 4
+		 @copyright Ailk NBS-Network Mgt. RD Dept.
+		 ***************************************
+	-->
+	
+	<s:states>
+		<s:State name="rectangle"/>
+		<s:State name="circle"/>
+		<s:State name="regulPolyon"/>
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+			import com.ailk.common.ui.gis.core.IMap;
+			import com.ailk.common.ui.gis.core.metry.GisCircle;
+			import com.ailk.common.ui.gis.core.metry.GisMetry;
+			import com.ailk.common.ui.gis.core.metry.GisPoint;
+			import com.ailk.common.ui.gis.core.metry.GisRectangle;
+			
+			import mx.events.FlexEvent;
+			private var _gisMetry:GisMetry;
+			private var _type:String = "rectangle";
+			private var _defaultPoint:GisPoint;
+			private function dragStart(event:MouseEvent):void
+			{
+				this.startDrag(false, new Rectangle(0, 0, parent.width - this.width, parent.height - this.height));
+				systemManager.addEventListener(MouseEvent.MOUSE_UP, dragStop);
+				systemManager.stage.addEventListener(Event.MOUSE_LEAVE, dragStop);
+			}
+
+			private function dragStop(event:Event):void
+			{
+				this.stopDrag();
+				systemManager.removeEventListener(MouseEvent.MOUSE_UP, dragStop);
+				systemManager.stage.removeEventListener(Event.MOUSE_LEAVE, dragStop);
+			}
+
+			protected function close_clickHandler(event:MouseEvent):void
+			{
+				this.dispatchEvent(new PropertiesCompEvent(PropertiesCompEvent.VIEW_HIDE));
+			}
+			
+			protected function propertiesComp_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+			
+			private function propertiesChange_clickHandler(event:MouseEvent):void{
+				var evt:PropertiesCompEvent = new PropertiesCompEvent(PropertiesCompEvent.PROPERTIES_CHANGE);
+				switch(type){
+					case "rectangle":
+						gisMetry = new GisRectangle(Number(r_wInput.text),Number(r_hInput.text),null,new GisPoint(Number(r_xInput.text),Number(r_yInput.text)));
+						break;
+					case "circle":
+						gisMetry = new GisCircle(new GisPoint(Number(c_xInput.text),Number(c_yInput.text)),Number(c_rInput.text));
+						break;
+					case "regulPolyon":
+						gisMetry = new GisCircle(new GisPoint(Number(c_xInput.text),Number(c_yInput.text)),Number(c_rInput.text),6);
+				}
+				evt.param = gisMetry;
+				this.dispatchEvent(evt);
+			}
+
+			[Bindable]
+			public function get gisMetry():GisMetry
+			{
+				return _gisMetry;
+			}
+
+			public function set gisMetry(value:GisMetry):void
+			{
+				_gisMetry = value;
+			}
+
+			public function get type():String
+			{
+				return _type;
+			}
+
+			public function set type(value:String):void
+			{
+				_type = value;
+				this.currentState=value;
+			}
+			[Bindable]
+			public function get defaultPoint():GisPoint
+			{
+				return _defaultPoint;
+			}
+
+			public function set defaultPoint(value:GisPoint):void
+			{
+				_defaultPoint = value;
+			}
+
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+		<mx:NumberValidator source="{r_xInput}" property="text" trigger="{r_xInput}" triggerEvent="change" valid="this.propertiesChangeBtn.enabled=true;" invalid="this.propertiesChangeBtn.enabled=false;"/>
+		<mx:NumberValidator source="{r_yInput}" property="text" trigger="{r_yInput}" triggerEvent="change" valid="this.propertiesChangeBtn.enabled=true;" invalid="this.propertiesChangeBtn.enabled=false;"/>
+		<mx:NumberValidator source="{r_wInput}" property="text" trigger="{r_wInput}" triggerEvent="change" valid="this.propertiesChangeBtn.enabled=true;" invalid="this.propertiesChangeBtn.enabled=false;"/>
+		<mx:NumberValidator source="{r_hInput}" property="text" trigger="{r_hInput}" triggerEvent="change" valid="this.propertiesChangeBtn.enabled=true;" invalid="this.propertiesChangeBtn.enabled=false;"/>
+		<mx:NumberValidator source="{c_xInput}" property="text" trigger="{c_xInput}" triggerEvent="change" valid="this.propertiesChangeBtn.enabled=true;" invalid="this.propertiesChangeBtn.enabled=false;"/>
+		<mx:NumberValidator source="{c_yInput}" property="text" trigger="{c_yInput}" triggerEvent="change" valid="this.propertiesChangeBtn.enabled=true;" invalid="this.propertiesChangeBtn.enabled=false;"/>
+		<mx:NumberValidator source="{c_rInput}" property="text" trigger="{c_rInput}" triggerEvent="change" valid="this.propertiesChangeBtn.enabled=true;" invalid="this.propertiesChangeBtn.enabled=false;"/>
+	</fx:Declarations>
+
+	<s:VGroup paddingBottom="10"
+			  paddingLeft="10"
+			  paddingRight="10"
+			  paddingTop="10">
+		<s:Label text="参数设置" width="100%" mouseDown="dragStart(event)" mouseUp="dragStop(event)"/>
+		<s:VGroup includeIn="rectangle">
+			<s:Label text="中心点"/>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="经度："/>
+				<s:TextInput id="r_xInput" width="150" text="{defaultPoint.x}"/>
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="纬度："/>
+				<s:TextInput id="r_yInput" width="150" text="{defaultPoint.y}"/>
+			</s:HGroup>
+			<mx:HRule width="100%"/>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="长(km)："/>
+				<s:TextInput id="r_wInput" width="80" text="0.5"/>
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="宽(km)："/>
+				<s:TextInput id="r_hInput" width="80" text="0.5"/>
+			</s:HGroup>
+		</s:VGroup>
+		
+		<s:VGroup includeIn="circle,regulPolyon">
+			<s:Label text="中心点"/>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="经度："/>
+				<s:TextInput id="c_xInput" width="150" text="{defaultPoint.x}"/>
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="纬度："/>
+				<s:TextInput id="c_yInput" width="150" text="{defaultPoint.y}"/>
+			</s:HGroup>
+			<mx:HRule width="100%"/>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="半径(km)："/>
+				<s:TextInput id="c_rInput" width="80" text="0.5"/>
+			</s:HGroup>
+		</s:VGroup>
+		
+		<s:HGroup width="100%" horizontalAlign="center">
+			<s:Button label="确定" id="propertiesChangeBtn" click="propertiesChange_clickHandler(event)" buttonMode="true"/>
+			<s:Button label="取消" click="close_clickHandler(event)" buttonMode="true"/>
+		</s:HGroup>
+	</s:VGroup>
+	<!--<mx:Image source="@Embed(source='assets/Close.png')"
+			  right="-16"
+			  top="-16"
+			  buttonMode="true"
+			  width="32"
+			  height="32" toolTip="关闭"
+			  click="close_clickHandler(event)"/>-->
+</s:SkinnableContainer>

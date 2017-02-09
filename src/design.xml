@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ailk-ui-gis URI http://www.asiainfo-linkage.com.cn/flex/gis -->
+<design version="2">
+     <namespaces>
+         <namespace prefix="ailk_gis"
+                      uri="http://www.asiainfo-linkage.com.cn/flex/gis"/>
+     </namespaces>
+     <categories>
+         <category id="gis" label="ailk gis" defaultExpand="true"/>
+     </categories>
+     <components>
+         <component id="com.ailk.common.ui.gis.MapWork" name="com.ailk.common.ui.gis.MapWork" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.tools.ToolBar" name="com.ailk.common.ui.gis.tools.ToolBar" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.tools.DrawToolBar" name="com.ailk.common.ui.gis.tools.DrawToolBar" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.tools.ScaleBar" name="com.ailk.common.ui.gis.tools.ScaleBar" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.tools.ZoomSliderBar" name="com.ailk.common.ui.gis.tools.ZoomSliderBar" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.tools.OverViewTool" name="com.ailk.common.ui.gis.tools.OverViewTool" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.core.GisServiceLayer" name="com.ailk.common.ui.gis.core.GisServiceLayer" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.core.GisDynamicServiceLayer" name="com.ailk.common.ui.gis.core.GisDynamicServiceLayer" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.core.GisLayer" name="com.ailk.common.ui.gis.core.GisLayer" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.core.GisWMSLayer" name="com.ailk.common.ui.gis.core.GisWMSLayer" namespace="ailk_gis" category="gis"/>
+         <component id="com.ailk.common.ui.gis.core.GisFeature" name="com.ailk.common.ui.gis.core.GisFeature" namespace="ailk_gis" category="gis"/>
+     </components>
+</design>
